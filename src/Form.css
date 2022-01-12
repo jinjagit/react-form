@@ -5,9 +5,10 @@
 
 .has-error {
   border-color: #dc3545 !important;
-  border-width: 3px;
+  border-width: 3px !important;
 }
 
 .formErrors {
   color: #dc3545;
+  height: 100px;
 }

@@ -39,10 +39,13 @@ class Form extends Component {
       default:
         break;
     }
-    this.setState({formErrors: fieldValidationErrors,
-                    emailValid: emailValid,
-                    passwordValid: passwordValid
-                  }, this.validateForm);
+    this.setState(
+      {formErrors: fieldValidationErrors,
+       emailValid: emailValid,
+       passwordValid: passwordValid
+      },
+      this.validateForm
+    );
   }
 
   validateForm() {
