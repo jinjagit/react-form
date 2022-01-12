@@ -2,3 +2,12 @@
 	width: 500px;
 	margin: auto;
 }
+
+.has-error {
+  border-color: #dc3545 !important;
+  border-width: 3px;
+}
+
+.formErrors {
+  color: #dc3545;
+}
