@@ -33,12 +33,13 @@ class Form extends Component {
         fieldValidationErrors.email = emailValid ? '' : ' is invalid';
         break;
       case 'latitude':
-        console.log(value);
-
         latitudeValid = false;
-        if ((value.match(/^[+-]?\d+(\.\d+)?$/)) && (parseFloat(value) >= -90.0) && (parseFloat(value) <= 90.0)) {
-          latitudeValid = true;
-        }
+        
+        if (
+            value.match(/^[+-]?\d+(\.\d+)?$/)
+            && (parseFloat(value) >= -90.0)
+            && (parseFloat(value) <= 90.0)
+        ) { latitudeValid = true; }
 
         fieldValidationErrors.latitude = latitudeValid ? '': ' must be a number (degrees) from -90.0 (S) to 90.0 (N)';
         break;
