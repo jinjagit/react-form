@@ -7,10 +7,10 @@ class Form extends Component {
     super(props);
     this.state = {
       email: 'example@mail.com',
-      password: '123456',
-      formErrors: {email: '', password: ''},
+      latitude: '12.8709',
+      formErrors: {email: '', latitude: ''},
       emailValid: ['example@mail.com', 'example', 'mail.', 'com'],
-      passwordValid: true,
+      latitudeValid: true,
       formValid: true,
     }
   }
@@ -25,16 +25,22 @@ class Form extends Component {
   validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
     let emailValid = this.state.emailValid;
-    let passwordValid = this.state.passwordValid;
+    let latitudeValid = this.state.latitudeValid;
 
     switch(fieldName) {
       case 'email':
         emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
         fieldValidationErrors.email = emailValid ? '' : ' is invalid';
         break;
-      case 'password':
-        passwordValid = value.length >= 6;
-        fieldValidationErrors.password = passwordValid ? '': ' is too short';
+      case 'latitude':
+        console.log(value);
+
+        latitudeValid = false;
+        if ((value.match(/^[+-]?\d+(\.\d+)?$/)) && (parseFloat(value) >= -90.0) && (parseFloat(value) <= 90.0)) {
+          latitudeValid = true;
+        }
+
+        fieldValidationErrors.latitude = latitudeValid ? '': ' must be a number (degrees) from -90.0 (S) to 90.0 (N)';
         break;
       default:
         break;
@@ -42,14 +48,14 @@ class Form extends Component {
     this.setState(
       {formErrors: fieldValidationErrors,
        emailValid: emailValid,
-       passwordValid: passwordValid
+       latitudeValid: latitudeValid
       },
       this.validateForm
     );
   }
 
   validateForm() {
-    this.setState({formValid: this.state.emailValid && this.state.passwordValid});
+    this.setState({formValid: this.state.emailValid && this.state.latitudeValid});
   }
 
   errorClass(error) {
@@ -70,11 +76,11 @@ class Form extends Component {
             value={this.state.email}
             onChange={this.handleUserInput}  />
         </div>
-        <div className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
-          <label htmlFor="password">Password</label>
-          <input type="password" className={`form-control ${this.errorClass(this.state.formErrors.password)}`} name="password"
-            placeholder="Password"
-            value={this.state.password}
+        <div className={`form-group ${this.errorClass(this.state.formErrors.latitude)}`}>
+          <label htmlFor="latitude">Latitude</label>
+          <input type="number" className={`form-control ${this.errorClass(this.state.formErrors.latitude)}`} name="latitude"
+            placeholder="Degrees (decimal)"
+            value={this.state.latitude}
             onChange={this.handleUserInput}  />
         </div>
         <button type="submit" className="btn btn-primary" disabled={!this.state.formValid}>Sign up</button>
