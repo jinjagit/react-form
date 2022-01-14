@@ -1,5 +1,5 @@
 import React from 'react';
-import './FormErrors.css';
+import './formErrors.css';
 
 export const FormErrors = ({formErrors}) =>
   <div className='formErrors'>
