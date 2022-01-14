@@ -3,10 +3,20 @@ import './App.css';
 import Form from './Form.js';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {data: ''};
+    this.setPageData.bind(this);
+  }
+
+  setPageData = (newValue) => {
+    this.setState({data: newValue});
+  }
+
   render() {
     return (
       <div className="App">
-        <Form />
+        <Form setPageData = {this.setPageData}/>
       </div>
     );
   }

@@ -13,6 +13,8 @@ class Form extends Component {
       latitudeValid: true,
       formValid: true,
     }
+    this.handleSubmit.bind(this);
+    this.props.setPageData('7777777');
   }
 
   handleUserInput = (e) => {
@@ -63,28 +65,46 @@ class Form extends Component {
     return(error.length === 0 ? '' : 'has-error');
   }
 
+  handleSubmit= (evt) => {
+    evt.preventDefault();
+    this.props.setPageData(evt.target.latitude.value);
+  }
+
   render () {
     return (
-      <form className="demoForm">
+      <form className="demoForm" onSubmit={this.handleSubmit}>
         <h2>Sign up</h2>
         <div className="panel panel-default">
           <FormErrors formErrors={this.state.formErrors} />
         </div>
         <div className={`form-group ${this.errorClass(this.state.formErrors.email)}`}>
           <label htmlFor="email">Email address</label>
-          <input type="email" required className={`form-control ${this.errorClass(this.state.formErrors.email)}`} name="email"
+          <input
+            type="email"
+            required
+            className={`form-control ${this.errorClass(this.state.formErrors.email)}`}
+            name="email"
             placeholder="Email"
             value={this.state.email}
-            onChange={this.handleUserInput}  />
+            onChange={this.handleUserInput}
+          />
         </div>
         <div className={`form-group ${this.errorClass(this.state.formErrors.latitude)}`}>
           <label htmlFor="latitude">Latitude</label>
-          <input type="number" className={`form-control ${this.errorClass(this.state.formErrors.latitude)}`} name="latitude"
+          <input
+            type="number"
+            className={`form-control ${this.errorClass(this.state.formErrors.latitude)}`}
+            name="latitude"
             placeholder="Degrees (decimal)"
             value={this.state.latitude}
-            onChange={this.handleUserInput}  />
+            onChange={this.handleUserInput}
+          />
         </div>
-        <button type="submit" className="btn btn-primary" disabled={!this.state.formValid}>Sign up</button>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          disabled={!this.state.formValid}
+        >Sign up</button>
       </form>
     )
   }
