@@ -119,6 +119,9 @@ class Form extends Component {
   render () {
     return (
       <div className="container form">
+        <div className="row panel panel-default">
+          <FormErrors formErrors={this.state.formErrors} />
+        </div>
         <form className="row g-3" onSubmit={this.handleSubmit}>
           <div className={`col-lg-3 ${this.errorClass(this.state.formErrors.date)}`}>
             <label htmlFor="date" className="form-label">Date</label>
@@ -130,8 +133,7 @@ class Form extends Component {
               max='2042-12-31'
               value={this.state.date}
               onChange={this.handleUserInput}
-            >
-            </input>
+            />
           </div>
           <div className={`col-lg-3 ${this.errorClass(this.state.formErrors.latitude)}`}>
             <label htmlFor="latitude" className="form-label">Latitude</label>
@@ -169,7 +171,7 @@ class Form extends Component {
           <div className="col-12">
             <button
               type="submit"
-              className="btn btn-primary"
+              className="btn btn-primary submit"
               disabled={!this.state.formValid}
             >Submit</button>
           </div>

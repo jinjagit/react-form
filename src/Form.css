@@ -1,7 +1,8 @@
 .form {
-  background: rgb(200, 200, 200);
+  background: rgb(224, 224, 224);
   padding: 10px;
   border-radius: 5px;
+  margin-top: 20px !important;
 }
 
 .has-error {
@@ -9,12 +10,11 @@
   border-width: 3px !important;
 }
 
-.formErrors {
-  color: #dc3545;
-  height: 100px;
-}
-
 label {
   text-align: left;
   width: 100%;
+}
+
+.submit:disabled{
+  background-color: #91bdff !important;
 }
