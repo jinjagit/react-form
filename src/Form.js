@@ -11,14 +11,18 @@ class Form extends Component {
       latitude: '4.3572',
       longitude: '-3.0',
       utcOffset: '0',
-      formErrors: {latitude: '', longitude: '', date: '', utcOffset: ''},
+      formErrors: {
+        latitude: '',
+        longitude: '',
+        date: '',
+        utcOffset: ''
+      },
       dateValid: true,
       latitudeValid: true,
       longitudeValid: true,
       utcOffsetValid: true,
       formValid: true,
     }
-    //this.handleSubmit.bind(this);
     this.props.setPageData({
       date: 'not set',
       latitude: 'not set',
@@ -99,7 +103,12 @@ class Form extends Component {
   }
 
   validateForm() {
-    this.setState({formValid: this.state.dateValid && this.state.latitudeValid && this.state.longitudeValid && this.state.utcOffsetValid});
+    this.setState({
+      formValid: this.state.dateValid
+      && this.state.latitudeValid
+      && this.state.longitudeValid
+      && this.state.utcOffsetValid
+    });
   }
 
   errorClass(error) {

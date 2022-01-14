@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Form from './form.js';
 
-class App extends Component {
+class Page extends Component {
   constructor(props) {
     super(props);
     this.state = {data: ''};
@@ -21,4 +21,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Page;
