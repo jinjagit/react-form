@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { FormErrors } from './FormErrors';
+import { todayStr } from './todayString';
 import './Form.css';
 
 class Form extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      date: '',
+      date: todayStr(),
       latitude: '4.3572',
       longitude: '-3.0',
       utcOffset: '0',

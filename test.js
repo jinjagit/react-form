@@ -1,15 +1,7 @@
-var num = "3-56.87";
+let now = new Date();
 
-console.log(parseFloat(num));
+now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
 
+let dateStr = now.toISOString().slice(0,10)
 
-if ((num.includes('-')) && (num.charAt(0) !== '-')) { console.log ('invalid'); }
-if ((num.includes('+'))  || (num.includes('e')) || (num.includes('E'))) { console.log ('invalid'); }
-
-/*
-
-"123.4" => 123.4
-"-123.4" => 123.4
-
-
-*/
+console.log(dateStr);
