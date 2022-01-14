@@ -1,6 +1,7 @@
-.demoForm {
-	width: 500px;
-	margin: auto;
+.form {
+  background: rgb(200, 200, 200);
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .has-error {
@@ -11,4 +12,9 @@
 .formErrors {
   color: #dc3545;
   height: 100px;
+}
+
+label {
+  text-align: left;
+  width: 100%;
 }
