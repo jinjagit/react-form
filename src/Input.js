@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { FormErrors } from './formErrors';
-import { getPreset } from './presets';
+import { getPreset, getValid } from './presets';
 import { Output } from './output.js';
 
-class SetVars extends Component {
+class Input extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -34,25 +34,9 @@ class SetVars extends Component {
 
   handleSelect = (e) => {
     if (e.target.value !== 'default') {
-      this.setState({
-        select: e.target.value,
-        dateValid: true,
-        latitudeValid: true,
-        longitudeValid: true,
-        utcOffsetValid: true,
-        formValid: true,
-        formErrors: {
-          latitude: '',
-          longitude: '',
-          date: '',
-          utcOffset: ''
-        },
-      });
-
-
-        this.setState(getPreset(e.target.value));
-
-
+      this.setState({ select: e.target.value });
+      this.setState(getValid());
+      this.setState(getPreset(e.target.value));
     }
   }
 
@@ -158,7 +142,7 @@ class SetVars extends Component {
           <div className='row g-3'>
             <div className='col-lg-8'>
               <p>Choose a date, location (latitude and longitude), and set the UTC offset (timezone difference to UTC, including seasonal adjustments) - or choose a preset example.</p>
-              <p>Click ‘Calculate’ to see details of the sun’s path for your chosen date and place.</p>
+              <p>Click 'Calculate' to see details of the sun's path for your chosen date and place.</p>
             </div>
             <div className='col-lg-4'>
             <select className='form-control' value={this.state.select} onChange={this.handleSelect}>            
@@ -236,4 +220,4 @@ class SetVars extends Component {
   }
 }
 
-export {SetVars};
+export {Input};

@@ -40,3 +40,19 @@ export const getPreset = (name) => {
 
   return preset;
 }
+
+export const getValid = () => {
+  return {
+    dateValid: true,
+    latitudeValid: true,
+    longitudeValid: true,
+    utcOffsetValid: true,
+    formValid: true,
+    formErrors: {
+      latitude: '',
+      longitude: '',
+      date: '',
+      utcOffset: '',
+    },
+  };
+}
