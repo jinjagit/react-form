@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormErrors } from './formErrors';
 import { getPreset, getValid } from './presets';
-import { Output } from './output.js';
+import { Calculate } from './Calculate.js';
 
 class Input extends Component {
   constructor (props) {
@@ -23,7 +23,7 @@ class Input extends Component {
       longitudeValid: false,
       utcOffsetValid: false,
       formValid: false,
-      vars: {
+      params: {
         date: '',
         latitude: '',
         longitude: '',
@@ -90,9 +90,9 @@ class Input extends Component {
           fieldValidationErrors.utcOffset = utcOffsetValid ? '': ' must be a whole number (hours) from -12 to 13';
         break;
         case 'date':
-          let testDate = new Date(value+"T00:00:00");
-          let minDate = new Date("2002-01-01T00:00:00");
-          let maxDate = new Date("2042-12-31T00:00:00");
+          let testDate = new Date(value+'T00:00:00');
+          let minDate = new Date('2002-01-01T00:00:00');
+          let maxDate = new Date('2042-12-31T00:00:00');
 
           (testDate >= minDate && testDate <= maxDate) ? dateValid = true : dateValid = false;
 
@@ -115,9 +115,9 @@ class Input extends Component {
   validateForm() {
     this.setState({
       formValid: this.state.dateValid
-      && this.state.latitudeValid
-      && this.state.longitudeValid
-      && this.state.utcOffsetValid
+                 && this.state.latitudeValid
+                 && this.state.longitudeValid
+                 && this.state.utcOffsetValid
     });
   }
 
@@ -127,7 +127,7 @@ class Input extends Component {
 
   handleSubmit= (evt) => {
     evt.preventDefault();
-    this.setState({vars: {
+    this.setState({params: {
       date: this.state.date,
       latitude: this.state.latitude,
       longitude: this.state.longitude,
@@ -138,30 +138,30 @@ class Input extends Component {
   render () {
     return (
       <div>
-        <div className="container">
+        <div className='container'>
           <div className='row g-3'>
             <div className='col-lg-8'>
-              <p>Choose a date, location (latitude and longitude), and set the UTC offset (timezone difference to UTC, including seasonal adjustments) - or choose a preset example.</p>
+              <p>Choose any date and location (latitude and longitude), and set the UTC offset (timezone difference from UTC, including seasonal adjustments) - or choose a preset example.</p>
               <p>Click 'Calculate' to see details of the sun's path for your chosen date and place.</p>
             </div>
             <div className='col-lg-4'>
             <select className='form-control' value={this.state.select} onChange={this.handleSelect}>            
-              <option value="default" disabled={true}>Choose a preset example</option>
-              <option value="b1">Brussels, 21st June, 2022</option>
-              <option value="b2">Brussels, 21st December, 2022</option>
-              <option value="sp1">São Paulo, 21st June, 2022</option>
-              <option value="sp2">São Paulo, 21st December, 2022</option>
+              <option value='default' disabled={true}>&#9660; Preset examples</option>
+              <option value='b1'>Brussels, 21st June, 2022</option>
+              <option value='b2'>Brussels, 21st December, 2022</option>
+              <option value='sp1'>São Paulo, 21st June, 2022</option>
+              <option value='sp2'>São Paulo, 21st December, 2022</option>
             </select>
             </div>
           </div>
         </div>
-        <div className="container form">
-          <div className="row panel panel-default">
+        <div className='container form'>
+          <div className='row panel panel-default'>
             <FormErrors formErrors={this.state.formErrors} />
           </div>
-          <form className="row g-3" onSubmit={this.handleSubmit}>
+          <form className='row g-3' onSubmit={this.handleSubmit}>
             <div className={`col-lg-3 ${this.errorClass(this.state.formErrors.date)}`}>
-              <label htmlFor="date" className="form-label">Date</label>
+              <label htmlFor='date' className='form-label'>Date</label>
               <input
                 className={`form-control ${this.errorClass(this.state.formErrors.date)}`}
                 type='date'
@@ -173,48 +173,48 @@ class Input extends Component {
               />
             </div>
             <div className={`col-lg-3 ${this.errorClass(this.state.formErrors.latitude)}`}>
-              <label htmlFor="latitude" className="form-label">Latitude</label>
+              <label htmlFor='latitude' className='form-label'>Latitude</label>
               <input
-                type="number"
+                type='number'
                 className={`form-control ${this.errorClass(this.state.formErrors.latitude)}`}
-                name="latitude"
-                placeholder="Degrees (decimal)"
+                name='latitude'
+                placeholder='Degrees (decimal)'
                 value={this.state.latitude}
                 onChange={this.handleUserInput}
               />
             </div>
             <div className={`col-lg-3 ${this.errorClass(this.state.formErrors.longitude)}`}>
-              <label htmlFor="longitude" className="form-label">Longitude</label>
+              <label htmlFor='longitude' className='form-label'>Longitude</label>
               <input
-                type="number"
+                type='number'
                 className={`form-control ${this.errorClass(this.state.formErrors.longitude)}`}
-                name="longitude"
-                placeholder="Degrees (decimal)"
+                name='longitude'
+                placeholder='Degrees (decimal)'
                 value={this.state.longitude}
                 onChange={this.handleUserInput}
               />
             </div>
             <div className={`col-lg-3 ${this.errorClass(this.state.formErrors.utcOffset)}`}>
-              <label htmlFor="utcOffset" className="form-label">UTC Offset</label>
+              <label htmlFor='utcOffset' className='form-label'>UTC Offset</label>
               <input
-                type="number"
+                type='number'
                 className={`form-control ${this.errorClass(this.state.formErrors.utcOffset)}`}
-                name="utcOffset"
-                placeholder="Hours (integer)"
+                name='utcOffset'
+                placeholder='Hours (integer)'
                 value={this.state.utcOffset}
                 onChange={this.handleUserInput}
               />
             </div>
-            <div className="col-12">
+            <div className='col-12'>
               <button
-                type="submit"
-                className="btn btn-primary submit"
+                type='submit'
+                className='btn btn-primary submit'
                 disabled={!this.state.formValid}
               >Calculate</button>
             </div>
           </form>
         </div>
-        <Output vars={this.state.vars}/>
+        <Calculate params={this.state.params}/>
       </div>
     )
   }
