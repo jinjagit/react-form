@@ -49,9 +49,9 @@ export const getValid = () => {
     utcOffsetValid: true,
     formValid: true,
     formErrors: {
+      date: '',
       latitude: '',
       longitude: '',
-      date: '',
       utcOffset: '',
     },
   };

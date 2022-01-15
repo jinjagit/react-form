@@ -17,9 +17,9 @@ input, select {
 .container {
   background: hsl(56, 70%, 85%);
   padding: 10px;
-  border-width: 1px;
+  border-width: 0 0 3px 0;
   border-style: solid;
-  border-color: hsl(56, 70%, 45%) !important;
+  border-color: hsl(56, 70%, 50%) !important;
 }
 
 .formErrors {

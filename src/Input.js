@@ -13,9 +13,9 @@ class Input extends Component {
       longitude: '',
       utcOffset: '',
       formErrors: {
+        date: '',
         latitude: '',
         longitude: '',
-        date: '',
         utcOffset: ''
       },
       dateValid: false,
@@ -49,13 +49,22 @@ class Input extends Component {
   }
 
   validateField(fieldName, value) {
+    let dateValid = this.state.dateValid;
     let fieldValidationErrors = this.state.formErrors;
     let latitudeValid = this.state.latitudeValid;
     let longitudeValid = this.state.longitudeValid;
-    let dateValid = this.state.dateValid;
     let utcOffsetValid = this.state.utcOffsetValid;
 
     switch(fieldName) {
+      case 'date':
+        let testDate = new Date(value+'T00:00:00');
+        let minDate = new Date('2002-01-01T00:00:00');
+        let maxDate = new Date('2042-12-31T00:00:00');
+
+        (testDate >= minDate && testDate <= maxDate) ? dateValid = true : dateValid = false;
+
+        fieldValidationErrors.date = dateValid ? '': ' must be a date from 01/01/2002 to 31/12/2042';
+      break;
       case 'latitude':
         latitudeValid = false;
         
@@ -88,15 +97,6 @@ class Input extends Component {
           ) { utcOffsetValid = true; }
   
           fieldValidationErrors.utcOffset = utcOffsetValid ? '': ' must be a whole number (hours) from -12 to 13';
-        break;
-        case 'date':
-          let testDate = new Date(value+'T00:00:00');
-          let minDate = new Date('2002-01-01T00:00:00');
-          let maxDate = new Date('2042-12-31T00:00:00');
-
-          (testDate >= minDate && testDate <= maxDate) ? dateValid = true : dateValid = false;
-
-          fieldValidationErrors.date = dateValid ? '': ' must be a date from 01/01/2002 to 31/12/2042';
         break;
       default:
         break;
