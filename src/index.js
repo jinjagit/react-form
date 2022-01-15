@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Page from './page';
+import { Intro } from './intro';
 import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Page />
+    <Intro />
   </React.StrictMode>,
   document.getElementById('root')
 );

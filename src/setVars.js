@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { FormErrors } from './formErrors';
 import { todayStr } from './todayString';
+import { Output } from './output.js';
 
-class Form extends Component {
+class SetVars extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -21,13 +22,8 @@ class Form extends Component {
       longitudeValid: true,
       utcOffsetValid: true,
       formValid: true,
+      data: {}
     }
-    this.props.setPageData({
-      date: 'not set',
-      latitude: 'not set',
-      longitude: 'not set',
-      utcOffset: 'not set',
-    });
   }
 
   handleUserInput = (e) => {
@@ -116,78 +112,80 @@ class Form extends Component {
 
   handleSubmit= (evt) => {
     evt.preventDefault();
-    let data = {
-      date: evt.target.date.value,
-      latitude: evt.target.latitude.value,
-      longitude: evt.target.longitude.value,
-      utcOffset: evt.target.utcOffset.value,
-    }
-    this.props.setPageData(data);
+    this.setState({data: {
+      date: this.state.date,
+      latitude: this.state.latitude,
+      longitude: this.state.longitude,
+      utcOffset: this.state.utcOffset
+    }});
   }
 
   render () {
     return (
-      <div className="container form">
-        <div className="row panel panel-default">
-          <FormErrors formErrors={this.state.formErrors} />
+      <div>
+        <div className="container form">
+          <div className="row panel panel-default">
+            <FormErrors formErrors={this.state.formErrors} />
+          </div>
+          <form className="row g-3" onSubmit={this.handleSubmit}>
+            <div className={`col-lg-3 ${this.errorClass(this.state.formErrors.date)}`}>
+              <label htmlFor="date" className="form-label">Date</label>
+              <input
+                className={`form-control ${this.errorClass(this.state.formErrors.date)}`}
+                type='date'
+                name='date'
+                min='2002-01-01'
+                max='2042-12-31'
+                value={this.state.date}
+                onChange={this.handleUserInput}
+              />
+            </div>
+            <div className={`col-lg-3 ${this.errorClass(this.state.formErrors.latitude)}`}>
+              <label htmlFor="latitude" className="form-label">Latitude</label>
+              <input
+                type="number"
+                className={`form-control ${this.errorClass(this.state.formErrors.latitude)}`}
+                name="latitude"
+                placeholder="Degrees (decimal)"
+                value={this.state.latitude}
+                onChange={this.handleUserInput}
+              />
+            </div>
+            <div className={`col-lg-3 ${this.errorClass(this.state.formErrors.longitude)}`}>
+              <label htmlFor="longitude" className="form-label">Longitude</label>
+              <input
+                type="number"
+                className={`form-control ${this.errorClass(this.state.formErrors.longitude)}`}
+                name="longitude"
+                placeholder="Degrees (decimal)"
+                value={this.state.longitude}
+                onChange={this.handleUserInput}
+              />
+            </div>
+            <div className={`col-lg-3 ${this.errorClass(this.state.formErrors.utcOffset)}`}>
+              <label htmlFor="utcOffset" className="form-label">UTC Offset</label>
+              <input
+                type="number"
+                className={`form-control ${this.errorClass(this.state.formErrors.utcOffset)}`}
+                name="utcOffset"
+                placeholder="Hours (integer)"
+                value={this.state.utcOffset}
+                onChange={this.handleUserInput}
+              />
+            </div>
+            <div className="col-12">
+              <button
+                type="submit"
+                className="btn btn-primary submit"
+                disabled={!this.state.formValid}
+              >Calculate</button>
+            </div>
+          </form>
         </div>
-        <form className="row g-3" onSubmit={this.handleSubmit}>
-          <div className={`col-lg-3 ${this.errorClass(this.state.formErrors.date)}`}>
-            <label htmlFor="date" className="form-label">Date</label>
-            <input
-              className={`form-control ${this.errorClass(this.state.formErrors.date)}`}
-              type='date'
-              name='date'
-              min='2002-01-01'
-              max='2042-12-31'
-              value={this.state.date}
-              onChange={this.handleUserInput}
-            />
-          </div>
-          <div className={`col-lg-3 ${this.errorClass(this.state.formErrors.latitude)}`}>
-            <label htmlFor="latitude" className="form-label">Latitude</label>
-            <input
-              type="number"
-              className={`form-control ${this.errorClass(this.state.formErrors.latitude)}`}
-              name="latitude"
-              placeholder="Degrees (decimal)"
-              value={this.state.latitude}
-              onChange={this.handleUserInput}
-            />
-          </div>
-          <div className={`col-lg-3 ${this.errorClass(this.state.formErrors.longitude)}`}>
-            <label htmlFor="longitude" className="form-label">Longitude</label>
-            <input
-              type="number"
-              className={`form-control ${this.errorClass(this.state.formErrors.longitude)}`}
-              name="longitude"
-              placeholder="Degrees (decimal)"
-              value={this.state.longitude}
-              onChange={this.handleUserInput}
-            />
-          </div>
-          <div className={`col-lg-3 ${this.errorClass(this.state.formErrors.utcOffset)}`}>
-            <label htmlFor="utcOffset" className="form-label">UTC Offset</label>
-            <input
-              type="number"
-              className={`form-control ${this.errorClass(this.state.formErrors.utcOffset)}`}
-              name="utcOffset"
-              placeholder="Hours (integer)"
-              value={this.state.utcOffset}
-              onChange={this.handleUserInput}
-            />
-          </div>
-          <div className="col-12">
-            <button
-              type="submit"
-              className="btn btn-primary submit"
-              disabled={!this.state.formValid}
-            >Submit</button>
-          </div>
-        </form>
+        <Output data={this.state.data}/>
       </div>
     )
   }
 }
 
-export default Form;
+export {SetVars};

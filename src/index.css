@@ -14,7 +14,7 @@ input {
   border-color: hsl(56, 70%, 45%) !important;
 }
 
-.form {
+.container {
   background: hsl(56, 70%, 90%);
   padding: 10px;
   border-radius: 5px;
