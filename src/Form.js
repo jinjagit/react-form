@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { FormErrors } from './formErrors';
 import { todayStr } from './todayString';
-import './form.css';
 
 class Form extends Component {
   constructor (props) {

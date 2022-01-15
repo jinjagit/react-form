@@ -8,7 +8,32 @@ body {
   background: hsl(56, 70%, 50%) !important;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+input {
+  border-width: 1px;
+  border-style: solid;
+  border-color: hsl(56, 70%, 45%) !important;
+}
+
+.form {
+  background: hsl(56, 70%, 90%);
+  padding: 10px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: hsl(56, 70%, 45%) !important;
+  margin-top: 20px !important;
+}
+
+.formErrors {
+  color: #dc3545;
+  text-align: center;
+}
+
+.has-error {
+  border-color: #dc3545 !important;
+  border-width: 3px !important;
+}
+
+.submit:disabled{
+  background-color: #91bdff !important;
 }
