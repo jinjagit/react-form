@@ -41,6 +41,12 @@ class SetVars extends Component {
         longitudeValid: true,
         utcOffsetValid: true,
         formValid: true,
+        formErrors: {
+          latitude: '',
+          longitude: '',
+          date: '',
+          utcOffset: ''
+        },
       });
 
 
