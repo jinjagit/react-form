@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { Intro } from './intro';
+import { SetVars } from './setVars.js';
 import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Intro />
+    <SetVars />
   </React.StrictMode>,
   document.getElementById('root')
 );

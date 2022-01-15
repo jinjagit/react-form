@@ -8,14 +8,14 @@ body {
   background: hsl(56, 70%, 50%) !important;
 }
 
-input {
+input, select {
   border-width: 1px;
   border-style: solid;
   border-color: hsl(56, 70%, 45%) !important;
 }
 
 .container {
-  background: hsl(56, 70%, 90%);
+  background: hsl(56, 70%, 85%);
   padding: 10px;
   border-radius: 5px;
   border-width: 1px;

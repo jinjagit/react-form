@@ -4,7 +4,7 @@ class Output extends Component {
   render() {
     return (
       <div className="container">
-        <p>{JSON.stringify(this.props.data)}</p>
+        <p>{JSON.stringify(this.props.vars)}</p>
       </div>
     );
   }

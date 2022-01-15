@@ -1,28 +1,52 @@
 import React, { Component } from 'react';
 import { FormErrors } from './formErrors';
-import { todayStr } from './todayString';
+import { getPreset } from './presets';
 import { Output } from './output.js';
 
 class SetVars extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      date: todayStr(),
-      latitude: '4.3572',
-      longitude: '-3.0',
-      utcOffset: '0',
+      select: 'default',
+      date: '',
+      latitude: '',
+      longitude: '',
+      utcOffset: '',
       formErrors: {
         latitude: '',
         longitude: '',
         date: '',
         utcOffset: ''
       },
-      dateValid: true,
-      latitudeValid: true,
-      longitudeValid: true,
-      utcOffsetValid: true,
-      formValid: true,
-      data: {}
+      dateValid: false,
+      latitudeValid: false,
+      longitudeValid: false,
+      utcOffsetValid: false,
+      formValid: false,
+      vars: {
+        date: '',
+        latitude: '',
+        longitude: '',
+        utcOffset: '',
+      }
+    }
+  }
+
+  handleSelect = (e) => {
+    if (e.target.value !== 'default') {
+      this.setState({
+        select: e.target.value,
+        dateValid: true,
+        latitudeValid: true,
+        longitudeValid: true,
+        utcOffsetValid: true,
+        formValid: true,
+      });
+
+
+        this.setState(getPreset(e.target.value));
+
+
     }
   }
 
@@ -31,6 +55,7 @@ class SetVars extends Component {
     const value = e.target.value;
     this.setState({[name]: value},
                   () => { this.validateField(name, value) });
+    this.setState({select: 'default'});
   }
 
   validateField(fieldName, value) {
@@ -112,7 +137,7 @@ class SetVars extends Component {
 
   handleSubmit= (evt) => {
     evt.preventDefault();
-    this.setState({data: {
+    this.setState({vars: {
       date: this.state.date,
       latitude: this.state.latitude,
       longitude: this.state.longitude,
@@ -123,6 +148,23 @@ class SetVars extends Component {
   render () {
     return (
       <div>
+        <div className="container">
+          <div className='row g-3'>
+            <div className='col-lg-8'>
+              <p>Choose a date, location (latitude and longitude), and set the UTC offset (timezone difference to UTC, including seasonal adjustments) - or choose a preset example.</p>
+              <p>Click ‘Calculate’ to see details of the sun’s path for your chosen date and place.</p>
+            </div>
+            <div className='col-lg-4'>
+            <select className='form-control' value={this.state.select} onChange={this.handleSelect}>            
+              <option value="default" disabled={true}>Choose a preset example</option>
+              <option value="b1">Brussels, 21st June, 2022</option>
+              <option value="b2">Brussels, 21st December, 2022</option>
+              <option value="sp1">São Paulo, 21st June, 2022</option>
+              <option value="sp2">São Paulo, 21st December, 2022</option>
+            </select>
+            </div>
+          </div>
+        </div>
         <div className="container form">
           <div className="row panel panel-default">
             <FormErrors formErrors={this.state.formErrors} />
@@ -182,7 +224,7 @@ class SetVars extends Component {
             </div>
           </form>
         </div>
-        <Output data={this.state.data}/>
+        <Output vars={this.state.vars}/>
       </div>
     )
   }
