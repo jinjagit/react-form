@@ -138,6 +138,7 @@ class Input extends Component {
   render () {
     return (
       <div>
+        <div className="d-none d-lg-block lg-spacer"></div>
         <div className='container'>
           <div className='row g-3'>
             <div className='col-lg-8'>
@@ -145,13 +146,13 @@ class Input extends Component {
               <p>Click 'Calculate' to see details of the sun's path for your chosen date and place.</p>
             </div>
             <div className='col-lg-4'>
-            <select className='form-control' value={this.state.select} onChange={this.handleSelect}>            
-              <option value='default' disabled={true}>&#9660; Preset examples</option>
-              <option value='b1'>Brussels, 21st June, 2022</option>
-              <option value='b2'>Brussels, 21st December, 2022</option>
-              <option value='sp1'>São Paulo, 21st June, 2022</option>
-              <option value='sp2'>São Paulo, 21st December, 2022</option>
-            </select>
+              <select className='form-control' value={this.state.select} onChange={this.handleSelect}>            
+                <option value='default' disabled={true}>&#9660; Preset examples</option>
+                <option value='b1'>Brussels, 21st June, 2022</option>
+                <option value='b2'>Brussels, 21st December, 2022</option>
+                <option value='sp1'>São Paulo, 21st June, 2022</option>
+                <option value='sp2'>São Paulo, 21st December, 2022</option>
+              </select>
             </div>
           </div>
         </div>

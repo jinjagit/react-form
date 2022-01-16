@@ -1,5 +1,5 @@
 //var math = require("mathjs");
-const { atan2, chain, derivative, e, evaluate, log, pi, pow, round, sqrt, bignumber } = require('mathjs');
+const { atan2, chain, derivative, divide, e, evaluate, log, pi, pow, round, sqrt, bignumber } = require('mathjs');
 
 
 // import {
@@ -12,12 +12,14 @@ const { atan2, chain, derivative, e, evaluate, log, pi, pow, round, sqrt, bignum
 console.log(log(10000, 10));      // 4
 
 let a = 1/3;
-let b = bignumber(1.0/3);
+let one = bignumber(1.0);
+let three = bignumber(3.0);
+let b = divide(one, three);
 
 
 
-console.log(a * 3);
-console.log(b * 3);
+console.log(a);
+console.log(b.toString());
 // sqrt(-4)                       // 2i
 // pow([[-1, 2], [3, 1]], 2)      // [[7, 0], [0, 7]]
 // derivative('x^2 + x', 'x')     // 2 * x + 1
@@ -40,3 +42,15 @@ console.log(b * 3);
 // math.config({
 //   number: 'BigNumber'
 // })
+
+
+
+
+
+
+
+
+
+
+
+// d-lg-none = hide on smaller than large screens

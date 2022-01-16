@@ -22,6 +22,10 @@ input, select {
   border-color: hsl(56, 70%, 50%) !important;
 }
 
+.lg-spacer {
+  height: 20px;
+}
+
 .formErrors {
   color: #dc3545;
   text-align: center;
