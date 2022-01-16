@@ -1,5 +1,6 @@
 //var math = require("mathjs");
-const { atan2, chain, derivative, divide, e, evaluate, log, pi, pow, round, sqrt, bignumber } = require('mathjs');
+//const { atan2, chain, derivative, divide, e, evaluate, log, pi, pow, round, sqrt, bignumber } = require('mathjs');
+const { divide, log, bignumber } = require('mathjs');
 
 
 // import {

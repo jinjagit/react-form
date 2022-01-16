@@ -142,7 +142,7 @@ class Input extends Component {
         <div className='container'>
           <div className='row g-3'>
             <div className='col-lg-8'>
-              <p>Choose any date and location (latitude and longitude), and set the UTC offset (timezone difference from UTC, including seasonal adjustments) - or choose a preset example.</p>
+              <p>Choose a date and location (latitude and longitude), and set the UTC offset (timezone difference from UTC, including seasonal adjustments) - or choose a preset example.</p>
               <p>Click 'Calculate' to see details of the sun's path for your chosen date and place.</p>
             </div>
             <div className='col-lg-4'>
